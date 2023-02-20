@@ -1,0 +1,26 @@
+{
+  "name": "js_glo_academy_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack --watch --mode=development",
+    "start": "webpack serve --mode=development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tkachanych/JS_Glo_Academy_Webpack.git"
+  },
+  "author": "tkachanych",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tkachanych/JS_Glo_Academy_Webpack/issues"
+  },
+  "homepage": "https://github.com/Tkachanych/JS_Glo_Academy_Webpack#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
+  }
+}

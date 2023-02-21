@@ -1,3 +1,3 @@
-import one  from './modules/one';
+import greetings  from './modules/greetings';
 
-one();
+greetings();

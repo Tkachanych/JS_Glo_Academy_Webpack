@@ -23,6 +23,12 @@ const timer = (deadline) => {
     }
   }
 
+  const setTime = (time) => {
+    timerHours.textContent = String(time.hours).length === 1 ? `0${time.hours}` : time.hours;
+    timerMinutes.textContent = ('0' + time.minutes).slice(-2);
+    timerSeconds.textContent = ('0' + time.seconds).slice(-2);
+  }
+
   const updateClock = () => {
     let getTime = getTimeRemaining();
 
@@ -30,13 +36,10 @@ const timer = (deadline) => {
       clearInterval(timerInterval);
       return;
     }
-
-    timerHours.textContent = String(getTime.hours).length === 1? `0${getTime.hours}` : getTime.hours;
-    timerMinutes.textContent = ('0' + getTime.minutes).slice(-2);
-    timerSeconds.textContent = ('0' + getTime.seconds).slice(-2);
-
+    setTime(getTime);
   }
 
+  updateClock();
   timerInterval = setInterval(updateClock, 1000);
 
 }

@@ -3,13 +3,48 @@ const modal = () => {
   const modal = document.querySelector(".popup");
   const closeBtn = modal.querySelector(".popup-close");
   const modalContent = modal.querySelector(".popup-content");
+  console.log(modalContent.getBoundingClientRect());
 
   let offset = 0;
+  let size = 0;
   let interval;
 
   const checkClientWidth = () => {
     return document.documentElement.clientWidth >= 768
   };
+
+  const openModalContent = () => {
+    modalContent.style.display = 'block';
+    interval = requestAnimationFrame(openModalContent);
+
+    if (size < 70) {
+      modalContent.style.transform = `scale(${size}%)`;
+      size += 5;
+    } else {
+      cancelAnimationFrame(interval);
+      modalContent.style.transform = '';
+      size = 0;
+    }
+  }
+
+  const openModal = () => {
+    interval = requestAnimationFrame(openModal);
+    modal.style.display = 'block';
+    modalContent.style.display = 'none';
+
+    if (size < 100) {
+      modal.style.width = `${size}%`;
+      modal.style.height = `${size}%`;
+      size += 5;
+    } else {
+      cancelAnimationFrame(interval);
+      size = 0;
+      modal.style.width = '';
+      modal.style.height = '';
+      openModalContent();
+    }
+    // console.log(size);
+  }
 
   const closeModal = () => {
     interval = requestAnimationFrame(closeModal);
@@ -25,9 +60,7 @@ const modal = () => {
   };
 
   buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      modal.style.display = "block";
-    })
+    button.addEventListener("click", openModal)
   });
 
   closeBtn.addEventListener("click", closeModal);

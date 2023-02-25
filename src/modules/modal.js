@@ -3,7 +3,6 @@ const modal = () => {
   const modal = document.querySelector(".popup");
   const closeBtn = modal.querySelector(".popup-close");
   const modalContent = modal.querySelector(".popup-content");
-  console.log(modalContent.getBoundingClientRect());
 
   let offset = 0;
   let size = 0;
@@ -43,7 +42,6 @@ const modal = () => {
       modal.style.height = '';
       openModalContent();
     }
-    // console.log(size);
   }
 
   const closeModal = () => {

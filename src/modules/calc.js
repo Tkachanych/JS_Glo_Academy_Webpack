@@ -12,6 +12,13 @@ const calc = () => {
   const phoneRegex = /[^\d\(\)\-]+/g;
   const emailRegex = /[^a-z0-9\@\_\-\.\!\~\*\']+/gi;
 
+  const clearString = (str) => {
+    return str.replace(/^[\s\-]+/g, '')
+      .replace(/[\s\-]+$/g, '')
+      .replace(/[\-]{2,}/g, '-')
+      .replace(/[\s]{2,}/g, ' ');
+  }
+
   calcItems.forEach((item) => {
     if (!/calc-type/.test(item.className)) {
       item.addEventListener('input', (e) => {
@@ -21,24 +28,31 @@ const calc = () => {
   })
 
   names.forEach((item) => {
-    item.addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(textRegex, '');
+    item.addEventListener('blur', (e) => {
+      e.target.value = e.target.value.replace(textRegex, '')
+      e.target.value = clearString(e.target.value);
+      e.target.value = e.target.value.replace(/([\bа-яё]+)/gi, (letter =>
+        letter[0].toLocaleUpperCase() + letter.substring(1).toLocaleLowerCase()
+      ));
     })
   });
 
-  message.addEventListener('input', (e) => {
+  message.addEventListener('blur', (e) => {
     e.target.value = e.target.value.replace(textRegex, '');
+    e.target.value = clearString(e.target.value);
   })
 
   emails.forEach((item) => {
-    item.addEventListener('input', (e) => {
+    item.addEventListener('blur', (e) => {
       e.target.value = e.target.value.replace(emailRegex, '');
+      e.target.value = clearString(e.target.value);
     })
   });
 
   phones.forEach((item) => {
-    item.addEventListener('input', (e) => {
+    item.addEventListener('blur', (e) => {
       e.target.value = e.target.value.replace(phoneRegex, '');
+      e.target.value = clearString(e.target.value);
     })
   });
 

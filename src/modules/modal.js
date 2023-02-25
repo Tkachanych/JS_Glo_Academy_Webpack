@@ -17,7 +17,7 @@ const modal = () => {
     modalContent.style.display = 'block';
     interval = requestAnimationFrame(openModalContent);
 
-    if (size < 70) {
+    if (size < 70 && checkClientWidth()) {
       modalContent.style.transform = `scale(${size}%)`;
       size += 5;
     } else {
@@ -32,7 +32,7 @@ const modal = () => {
     modal.style.display = 'block';
     modalContent.style.display = 'none';
 
-    if (size < 100) {
+    if (size < 100 && checkClientWidth()) {
       modal.style.width = `${size}%`;
       modal.style.height = `${size}%`;
       size += 5;

@@ -13,6 +13,7 @@ const calc = () => {
   const emailRegex = /[^a-z0-9\@\_\-\.\!\~\*\']+/gi;
 
   const clearString = (str) => {
+
     return str.replace(/^[\s\-]+/g, '')
       .replace(/[\s\-]+$/g, '')
       .replace(/[\-]{2,}/g, '-')
@@ -20,6 +21,7 @@ const calc = () => {
   }
 
   calcItems.forEach((item) => {
+
     if (!/calc-type/.test(item.className)) {
       item.addEventListener('input', (e) => {
         e.target.value = e.target.value.replace(/\D+/g, '');
@@ -28,6 +30,11 @@ const calc = () => {
   })
 
   names.forEach((item) => {
+
+    item.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(textRegex, '');
+    })
+
     item.addEventListener('blur', (e) => {
       e.target.value = e.target.value.replace(textRegex, '')
       e.target.value = clearString(e.target.value);
@@ -37,12 +44,21 @@ const calc = () => {
     })
   });
 
+  message.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(textRegex, '');
+  })
+
   message.addEventListener('blur', (e) => {
     e.target.value = e.target.value.replace(textRegex, '');
     e.target.value = clearString(e.target.value);
   })
 
   emails.forEach((item) => {
+
+    item.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(emailRegex, '');
+    })
+
     item.addEventListener('blur', (e) => {
       e.target.value = e.target.value.replace(emailRegex, '');
       e.target.value = clearString(e.target.value);
@@ -50,6 +66,11 @@ const calc = () => {
   });
 
   phones.forEach((item) => {
+
+    item.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(phoneRegex, '');
+    })
+
     item.addEventListener('blur', (e) => {
       e.target.value = e.target.value.replace(phoneRegex, '');
       e.target.value = clearString(e.target.value);
@@ -57,6 +78,7 @@ const calc = () => {
   });
 
   document.getElementById('form2-name').classList.remove('form-name');
+
 }
 
 export default calc;

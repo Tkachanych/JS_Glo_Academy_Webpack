@@ -9,7 +9,7 @@ const calc = () => {
   const message = document.querySelector('.mess');
 
   const textRegex = /[^а-яё-\s]+/gi;
-  const phoneRegex = /[^\d\(\)\-]+/g;
+  const phoneRegex = /[^\d\(\)\-\+]+/g;
   const emailRegex = /[^a-z0-9\@\_\-\.\!\~\*\']+/gi;
 
   const clearString = (str) => {

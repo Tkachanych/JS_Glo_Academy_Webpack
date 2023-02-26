@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/Tkachanych/JS_Glo_Academy_Webpack#readme",
   "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"

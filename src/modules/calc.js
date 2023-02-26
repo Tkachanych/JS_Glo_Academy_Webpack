@@ -1,5 +1,4 @@
 const calc = () => {
-
   const calcItems = document.querySelectorAll('.calc-item');
   document.getElementById('form2-name').classList.add('form-name');
 
@@ -16,33 +15,33 @@ const calc = () => {
     if (!/calc-type/.test(item.className)) {
       item.addEventListener('input', (e) => {
         e.target.value = e.target.value.replace(/\D+/g, '');
-      })
+      });
     }
-  })
+  });
 
   names.forEach((item) => {
     item.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(textRegex, '');
-    })
+    });
   });
 
   message.addEventListener('input', (e) => {
     e.target.value = e.target.value.replace(textRegex, '');
-  })
+  });
 
   emails.forEach((item) => {
     item.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(emailRegex, '');
-    })
+    });
   });
 
   phones.forEach((item) => {
     item.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(phoneRegex, '');
-    })
+    });
   });
 
   document.getElementById('form2-name').classList.remove('form-name');
-}
+};
 
 export default calc;

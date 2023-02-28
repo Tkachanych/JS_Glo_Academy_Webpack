@@ -1,29 +1,28 @@
-const menu = () => {
-  const menuBtn = document.querySelector('.menu');
+const toggleMenu = () => {
   const menu = document.querySelector('menu');
-  const closeBtn = menu.querySelector('.close-btn');
-  const menuItems = menu.querySelectorAll('ul>li>a');
   const scrollBtn = document.body.querySelector('a');
+  const body = document.querySelector('body');
 
   const handleMenu = () => {
     menu.classList.toggle('active-menu');
   };
 
-  menuBtn.addEventListener('click', handleMenu);
-  closeBtn.addEventListener('click', handleMenu);
-
-  menuItems.forEach((menuItem) => menuItem.addEventListener('click', (e) => {
-    e.preventDefault();
-    handleMenu();
-    document.querySelector(e.target.getAttribute('href'))
-      .scrollIntoView({ block: 'start', behavior: 'smooth' });
-  }));
-
-  scrollBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.querySelector(scrollBtn.getAttribute('href'))
-      .scrollIntoView({ block: 'start', behavior: 'smooth' });
+  body.addEventListener('click', (e) => {
+    if (e.target.closest('.menu') || e.target.classList.contains('close-btn')) {
+      handleMenu();
+    }
+    if (e.target.closest('.active-menu')) {
+      e.preventDefault();
+      handleMenu();
+      document.querySelector(e.target.getAttribute('href'))
+        .scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
+    if (e.target.parentNode === scrollBtn) {
+      e.preventDefault();
+      document.querySelector(e.target.parentNode.getAttribute('href'))
+        .scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
   });
 };
 
-export default menu;
+export default toggleMenu;

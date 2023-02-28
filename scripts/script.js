@@ -2,8 +2,14 @@
 
 const square = document.querySelector('.square-body');
 const resetBtn = document.querySelector('.btn-reset');
+const blocks = square.querySelectorAll('.block');
+const blockNumbers = square.querySelectorAll('.block-number');
 
-let blocks = square.querySelectorAll('.block');
+resetBtn.addEventListener('click', () => {
+  blockNumbers.forEach((block, index) => {
+    block.textContent = +index + 1;
+  })
+})
 
 const swapBlocks = (a, b) => {
   const first = a.querySelector('.block-number');

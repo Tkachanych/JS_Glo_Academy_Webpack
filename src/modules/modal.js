@@ -1,7 +1,6 @@
 const modal = () => {
   const buttons = document.querySelectorAll('.popup-btn');
   const modal = document.querySelector('.popup');
-  const closeBtn = modal.querySelector('.popup-close');
   const modalContent = modal.querySelector('.popup-content');
 
   let offset = 0;
@@ -59,7 +58,11 @@ const modal = () => {
     button.addEventListener('click', openModal);
   });
 
-  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+      closeModal();
+    }
+  });
 };
 
 export default modal;

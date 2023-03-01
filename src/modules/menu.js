@@ -8,6 +8,11 @@ const toggleMenu = () => {
   };
 
   body.addEventListener('click', (e) => {
+    if (e.target.parentNode === scrollBtn) {
+      e.preventDefault();
+      document.querySelector(e.target.parentNode.getAttribute('href'))
+        .scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
     if (e.target.closest('.active-menu')
     && !e.target.classList.contains('active-menu')) {
       e.preventDefault();
@@ -20,12 +25,6 @@ const toggleMenu = () => {
       || e.target.classList.contains('close-btn')
       || (e.target !== menu && menu.classList.contains('active-menu'))) {
       handleMenu();
-      return;
-    }
-    if (e.target.parentNode === scrollBtn) {
-      e.preventDefault();
-      document.querySelector(e.target.parentNode.getAttribute('href'))
-        .scrollIntoView({ block: 'start', behavior: 'smooth' });
     }
   });
 };

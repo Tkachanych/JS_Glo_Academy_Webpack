@@ -16,5 +16,6 @@
         "no-plusplus": "off",
         "no-trailing-spaces": "warn",
         "no-unused-vars": "warn"
-    }
+    },
+    "allowShortCircuit": true
 }

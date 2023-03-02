@@ -22,21 +22,17 @@ const calc = (price = 100) => {
 
     (calcType.value && calcSquare.value)
       && (totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue)
-      && (total.textContent = totalValue);
-
-  }
+      && (total.textContent = Math.round(totalValue));
+  };
 
   calcBlock.addEventListener('change', (e) => {
-    if (e.target === calcType ||
-      e.target === calcSquare ||
-      e.target === calcCount ||
-      e.target === calcDay) {
+    if (e.target === calcType
+      || e.target === calcSquare
+      || e.target === calcCount
+      || e.target === calcDay) {
       countCalc();
     }
   });
-
-
-
 };
 
 export default calc;

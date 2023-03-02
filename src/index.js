@@ -8,6 +8,6 @@ import slider from './modules/slider';
 timer('05 march 2023');
 toggleMenu();
 modal();
-calc();
+calc(100);
 tabs();
 slider();

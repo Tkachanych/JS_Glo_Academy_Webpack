@@ -15,7 +15,7 @@
         "no-useless-escape": "off",
         "no-plusplus": "off",
         "no-trailing-spaces": "warn",
-        "no-unused-vars": "warn"
-    },
-    "allowShortCircuit": true
+        "no-unused-vars": "warn",
+        "no-unused-expressions": "warn"
+    }
 }

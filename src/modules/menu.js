@@ -8,7 +8,7 @@ const toggleMenu = () => {
 
   const scrollToElem = (id) => {
     document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'smooth' });
-  }
+  };
 
   body.addEventListener('click', (e) => {
     const { target } = e;

@@ -1,57 +1,58 @@
+import { animate } from './helpers';
+
 const modal = () => {
   const buttons = document.querySelectorAll('.popup-btn');
   const modal = document.querySelector('.popup');
   const modalContent = modal.querySelector('.popup-content');
 
-  let offset = 0;
-  let size = 0;
-  let interval;
-
   const checkClientWidth = () => document.documentElement.clientWidth >= 768;
 
   const openModalContent = () => {
     modalContent.style.display = 'block';
-    interval = requestAnimationFrame(openModalContent);
 
-    if (size < 70 && checkClientWidth()) {
-      modalContent.style.transform = `scale(${size}%)`;
-      size += 5;
-    } else {
-      cancelAnimationFrame(interval);
-      modalContent.style.transform = '';
-      size = 0;
-    }
+    checkClientWidth() && animate({
+      duration: 500,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        modalContent.style.transform = `scale(${100 * progress}%)`;
+      },
+    });
   };
 
   const openModal = () => {
-    interval = requestAnimationFrame(openModal);
     modal.style.display = 'block';
     modalContent.style.display = 'none';
-
-    if (size < 100 && checkClientWidth()) {
-      modal.style.width = `${size}%`;
-      modal.style.height = `${size}%`;
-      size += 5;
-    } else {
-      cancelAnimationFrame(interval);
-      size = 0;
-      modal.style.width = '';
-      modal.style.height = '';
-      openModalContent();
-    }
+    checkClientWidth() && animate({
+      duration: 200,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        modal.style.width = `${100 * progress}%`;
+        modal.style.height = `${100 * progress}%`;
+      },
+    });
+    openModalContent();
   };
 
   const closeModal = () => {
-    interval = requestAnimationFrame(closeModal);
-    offset -= 10;
-    if (modalContent.getBoundingClientRect().right > 0 && checkClientWidth()) {
-      modalContent.style.transform = `translateX(${offset}%)`;
-    } else {
-      cancelAnimationFrame(interval);
-      offset = 0;
-      modalContent.style.transform = '';
-      modal.style.display = 'none';
-    }
+    checkClientWidth() && animate({
+      duration: 300,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        modalContent.style.transform = `translateX(${-200 * progress}%)`;
+        modal.style.width = `${100 - 100 * progress}%`;
+      },
+    });
+
+    setTimeout(() => {
+      modalContent.removeAttribute('style');
+      modal.removeAttribute('style');
+    }, checkClientWidth() ? 500 : 0);
   };
 
   buttons.forEach((button) => {

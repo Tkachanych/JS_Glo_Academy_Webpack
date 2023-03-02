@@ -17,13 +17,13 @@ const addRules = () => {
     elem.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(regex, '');
     });
-  }
+  };
 
   addRegex(message, textRegex);
   calcItems.forEach((item) => (!/calc-type/.test(item.className) && addRegex(item, /\D+/g)));
   names.forEach((item) => addRegex(item, textRegex));
   emails.forEach((item) => addRegex(item, emailRegex));
   phones.forEach((item) => addRegex(item, phoneRegex));
-}
+};
 
 export default addRules;

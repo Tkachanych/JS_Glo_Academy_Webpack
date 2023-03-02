@@ -12,7 +12,7 @@ const slider = () => {
       dotsBlock.append(dots[i]);
     }
     return dots;
-  }
+  };
 
   const dots = createDots(slides.length);
 

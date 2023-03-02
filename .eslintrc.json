@@ -16,7 +16,9 @@
         "no-plusplus": "off",
         "no-trailing-spaces": "warn",
         "no-unused-vars": "warn",
-        "no-unused-expressions": "warn",
-        "no-shadow": "off"
+        "no-unused-expressions": "off",
+        "no-shadow": "off",
+        "no-nested-ternary": "off",
+        "import/prefer-default-export": "off"
     }
 }

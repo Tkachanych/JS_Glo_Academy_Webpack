@@ -5,11 +5,21 @@ import calc from './modules/calc';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
 import addRules from './modules/rules';
+import sendForm from './modules/sendForm';
 
-timer('05 march 2023');
+timer('15 march 2023');
 toggleMenu();
 modal();
 addRules();
 calc(100);
 tabs();
 slider();
+sendForm({
+  formId: 'form1',
+  someElem: [
+    {
+      type: 'block',
+      id: 'total',
+    },
+  ],
+});

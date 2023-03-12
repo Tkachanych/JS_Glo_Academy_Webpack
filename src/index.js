@@ -1,3 +1,5 @@
+'use strict';
+
 import timer from './modules/timer';
 import toggleMenu from './modules/menu';
 import modal from './modules/modal';

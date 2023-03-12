@@ -1,11 +1,21 @@
 const sendForm = ({ formId, someElem = [] }) => {
   const form = document.getElementById(formId);
+  const statusBlock = document.createElement('div');
+  const statusText = {
+    loadText: 'Загрузка...',
+    errorText: 'Ошибка',
+    successText: 'Спасибо. Наш менеджер с вами свяжется!',
+  };
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  const validate = (list) => {
+    const success = true;
 
+    return success;
+  };
+
+  const submitForm = () => {
+    const formElements = form.querySelectorAll('input');
     const formData = new FormData(form);
-
     const formBody = {};
 
     const sendData = (data) => fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -15,6 +25,9 @@ const sendForm = ({ formId, someElem = [] }) => {
         'Content-Type': 'application/json',
       },
     }).then((res) => res.json());
+
+    statusBlock.textContent = statusText.loadText;
+    form.append(statusBlock);
 
     formData.forEach((value, key) => {
       formBody[key] = value;
@@ -30,8 +43,32 @@ const sendForm = ({ formId, someElem = [] }) => {
       }
     });
 
-    sendData(formBody).then((data) => { console.log(data); });
-  });
+    if (validate(formElements)) {
+      sendData(formBody).then((data) => {
+        statusBlock.textContent = statusText.successText;
+        formElements.forEach((input) => {
+          input.value = '';
+        });
+      })
+        .catch((err) => { statusBlock.textContent = statusText.errorText; });
+    } else {
+      alert('Данные не валидны!');
+    }
+  };
+
+  try {
+    if (!form) {
+      throw new Error('Не найдена форма!');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      submitForm();
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
 };
 
 export default sendForm;

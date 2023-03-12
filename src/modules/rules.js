@@ -12,7 +12,8 @@ const addRules = () => {
 
   document.getElementById('form2-name').classList.remove('form-name');
 
-  const textRegex = /[^а-яё-\s]+/gi;
+  const textRegex = /[^а-яё\d\s\,\.\!\?]+/gi;
+  const nameRegex = /[^а-яё\s]+/gi;
   const emailRegex = /[^a-z0-9\@\_\-\.\!\~\*\']+/gi;
 
   const addRegex = (elem, regex) => {
@@ -26,7 +27,7 @@ const addRules = () => {
 
   addRegex(message, textRegex);
   calcItems.forEach((item) => (!/calc-type/.test(item.className) && addRegex(item, /\D+/g)));
-  names.forEach((item) => addRegex(item, textRegex));
+  names.forEach((item) => addRegex(item, nameRegex));
   emails.forEach((item) => addRegex(item, emailRegex));
   maskPhone('.form-phone');
   phones.forEach((item) => {

@@ -17,7 +17,7 @@ calc(100);
 tabs();
 slider();
 sendForm({
-  formId: 'form1',
+  formId: 'form1,form2,form3',
   someElem: [
     {
       type: 'block',

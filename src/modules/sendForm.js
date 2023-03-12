@@ -1,5 +1,5 @@
 const sendForm = ({ formId, someElem = [] }) => {
-  const form = document.getElementById(formId);
+  const forms = formId.split(',');
   const statusBlock = document.createElement('div');
   const statusText = {
     loadText: 'Загрузка...',
@@ -13,7 +13,7 @@ const sendForm = ({ formId, someElem = [] }) => {
     return success;
   };
 
-  const submitForm = () => {
+  const submitForm = (form) => {
     const formElements = form.querySelectorAll('input');
     const formData = new FormData(form);
     const formBody = {};
@@ -56,19 +56,23 @@ const sendForm = ({ formId, someElem = [] }) => {
     }
   };
 
-  try {
-    if (!form) {
-      throw new Error('Не найдена форма!');
+  forms.forEach((id) => {
+    const form = document.getElementById(id);
+
+    try {
+      if (!form) {
+        throw new Error(`Не найдена форма с ID = ${id}`);
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        submitForm(form);
+      });
+    } catch (err) {
+      console.log(err.message);
     }
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      submitForm();
-    });
-  } catch (err) {
-    console.log(err.message);
-  }
+  });
 };
 
 export default sendForm;

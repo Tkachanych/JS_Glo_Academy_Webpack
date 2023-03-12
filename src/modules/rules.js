@@ -5,11 +5,10 @@ const addRules = () => {
   const calcItems = document.querySelectorAll('.calc-item');
   document.getElementById('form2-name').classList.add('form-name');
 
-  maskPhone('.form-phone');
   const names = document.querySelectorAll('.form-name');
-  const phones = document.querySelectorAll('.form-phone');
   const emails = document.querySelectorAll('.form-email');
   const message = document.querySelector('.mess');
+  const phones = document.querySelectorAll('.form-phone');
 
   document.getElementById('form2-name').classList.remove('form-name');
 
@@ -18,7 +17,10 @@ const addRules = () => {
 
   const addRegex = (elem, regex) => {
     elem.addEventListener('input', (e) => {
+      const arr = [];
+      arr.push(e.target);
       e.target.value = e.target.value.replace(regex, '');
+      validate(arr) && e.target.classList.remove('error');
     });
   };
 
@@ -26,6 +28,13 @@ const addRules = () => {
   calcItems.forEach((item) => (!/calc-type/.test(item.className) && addRegex(item, /\D+/g)));
   names.forEach((item) => addRegex(item, textRegex));
   emails.forEach((item) => addRegex(item, emailRegex));
-  phones.forEach((item) => addRegex(item, phoneRegex));
+  maskPhone('.form-phone');
+  phones.forEach((item) => {
+    item.addEventListener('input', (e) => {
+      const arr = [];
+      arr.push(e.target);
+      validate(arr) && e.target.classList.remove('error');
+    });
+  });
 };
 export default addRules;

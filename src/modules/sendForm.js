@@ -9,12 +9,6 @@ const sendForm = ({ formId, someElem = [] }) => {
     successText: 'Спасибо. Наш менеджер с вами свяжется!',
   };
 
-  const validate = (list) => {
-    const success = true;
-
-    return success;
-  };
-
   const submitForm = (form) => {
     const formElements = form.querySelectorAll('input');
     const formData = new FormData(form);

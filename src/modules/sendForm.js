@@ -22,25 +22,27 @@ const sendForm = ({ formId, someElem = [] }) => {
       },
     }).then((res) => res.json());
 
-    statusBlock.textContent = statusText.loadText;
-    statusBlock.style.mixBlendMode = 'screen';
-    form.append(statusBlock);
-
     formData.forEach((value, key) => {
+      if (!value) {
+        return;
+      }
       formBody[key] = value;
     });
 
     someElem.forEach((elem) => {
       const element = document.getElementById(elem.id);
-
-      if (elem.type === 'block') {
+      if (elem.type === 'block' && element.textContent !== '0') {
         formBody[elem.id] = element.textContent;
       } else if (elem.type === 'input') {
         formBody[elem.id] = element.value;
       }
     });
 
-    if (validate(formElements)) {
+    if (validate('submit', formElements)) {
+      statusBlock.textContent = statusText.loadText;
+      statusBlock.style.mixBlendMode = 'screen';
+      form.append(statusBlock);
+
       sendData(formBody).then((data) => {
         statusBlock.textContent = statusText.successText;
         formElements.forEach((input) => {
@@ -48,7 +50,8 @@ const sendForm = ({ formId, someElem = [] }) => {
         });
         console.log(data);
       })
-        .catch((err) => { statusBlock.textContent = statusText.errorText; });
+        .catch((err) => { statusBlock.textContent = statusText.errorText; })
+        .finally(() => setTimeout(() => statusBlock.remove(), 3000));
     }
   };
 

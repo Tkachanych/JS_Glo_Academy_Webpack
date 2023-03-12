@@ -21,7 +21,7 @@ const addRules = () => {
       const arr = [];
       arr.push(e.target);
       e.target.value = e.target.value.replace(regex, '');
-      validate(arr) && e.target.classList.remove('error');
+      validate('input', arr) && e.target.classList.remove('error');
     });
   };
 
@@ -34,7 +34,7 @@ const addRules = () => {
     item.addEventListener('input', (e) => {
       const arr = [];
       arr.push(e.target);
-      validate(arr) && e.target.classList.remove('error');
+      validate('input', arr) && e.target.classList.remove('error');
     });
   });
 };

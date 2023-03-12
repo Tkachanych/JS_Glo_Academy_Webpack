@@ -49,8 +49,6 @@ const sendForm = ({ formId, someElem = [] }) => {
         console.log(data);
       })
         .catch((err) => { statusBlock.textContent = statusText.errorText; });
-    } else {
-      alert('Данные не валидны!');
     }
   };
 

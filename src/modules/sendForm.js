@@ -1,3 +1,5 @@
+import validate from './validation';
+
 const sendForm = ({ formId, someElem = [] }) => {
   const forms = formId.split(',');
   const statusBlock = document.createElement('div');
@@ -27,6 +29,7 @@ const sendForm = ({ formId, someElem = [] }) => {
     }).then((res) => res.json());
 
     statusBlock.textContent = statusText.loadText;
+    statusBlock.style.mixBlendMode = 'screen';
     form.append(statusBlock);
 
     formData.forEach((value, key) => {
@@ -49,6 +52,7 @@ const sendForm = ({ formId, someElem = [] }) => {
         formElements.forEach((input) => {
           input.value = '';
         });
+        console.log(data);
       })
         .catch((err) => { statusBlock.textContent = statusText.errorText; });
     } else {

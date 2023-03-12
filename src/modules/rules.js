@@ -1,7 +1,11 @@
+import maskPhone from './maskphone';
+import validate from './validation';
+
 const addRules = () => {
   const calcItems = document.querySelectorAll('.calc-item');
   document.getElementById('form2-name').classList.add('form-name');
 
+  maskPhone('.form-phone');
   const names = document.querySelectorAll('.form-name');
   const phones = document.querySelectorAll('.form-phone');
   const emails = document.querySelectorAll('.form-email');
@@ -10,7 +14,6 @@ const addRules = () => {
   document.getElementById('form2-name').classList.remove('form-name');
 
   const textRegex = /[^а-яё-\s]+/gi;
-  const phoneRegex = /[^\d\(\)\-\+]+/g;
   const emailRegex = /[^a-z0-9\@\_\-\.\!\~\*\']+/gi;
 
   const addRegex = (elem, regex) => {
@@ -25,5 +28,4 @@ const addRules = () => {
   emails.forEach((item) => addRegex(item, emailRegex));
   phones.forEach((item) => addRegex(item, phoneRegex));
 };
-
 export default addRules;
